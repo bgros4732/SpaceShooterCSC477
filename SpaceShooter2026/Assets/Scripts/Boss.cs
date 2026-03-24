@@ -9,7 +9,6 @@ public class Boss : MonoBehaviour
   public GameObject enemyPrefab;
   public Transform bulletSpawnPoint;
   public GameObject expoPrefab;
-  public UI ui;
 
   private float attackTimer;
   private Transform player;

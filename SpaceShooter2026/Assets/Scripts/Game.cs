@@ -32,6 +32,7 @@ public class Game : MonoBehaviour {
 
   private void SpawnBoss()
   {
+    Debug.Log("Spawning boss!");
     Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
   }
 
@@ -82,11 +83,11 @@ public class Game : MonoBehaviour {
   public void EnemyKilled()
   {
     enemyKillCount++;
-    if (currentLevel == 1 && enemyKillCount >= 15)
+    if (currentLevel == 1 && enemyKillCount >= 2)
     {
       LoadLevel(2);
     }
-    else if (currentLevel == 2 && enemyKillCount >= 15)
+    else if (currentLevel == 2 && enemyKillCount >= 2)
     {
       LoadLevel(3);
     }
@@ -103,8 +104,11 @@ public class Game : MonoBehaviour {
       Destroy(enemy);
     }
     ui.ShowLevelScreen(level);
+  }
 
-    if (level == 3)
+  public void CheckSpawnBoss()
+  {
+    if (currentLevel == 3)
     {
       SpawnBoss();
     }

@@ -55,6 +55,7 @@ public class UI : MonoBehaviour {
     uiLevel2Screen.SetActive(false);
     uiLevel3Screen.SetActive(false);
     SpaceShooterInput.Instance.EnableInput();
+    Game.Instance.CheckSpawnBoss();
     IsReady = true;
   }
   
