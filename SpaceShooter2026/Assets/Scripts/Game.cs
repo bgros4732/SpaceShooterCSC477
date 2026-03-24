@@ -10,6 +10,8 @@ public class Game : MonoBehaviour {
   public GameObject playerObject;
   public GameObject bossPrefab;
   public Vector3 bossSpawnPosition = new Vector3(6f, 0f, 0f);
+  public bool isSurvivalMode = false;
+  public float survivalTimer = 0f;
 
   // private fields
   private float powerUpDelay;
@@ -82,13 +84,16 @@ public class Game : MonoBehaviour {
   public void EnemyKilled()
   {
     enemyKillCount++;
-    if (currentLevel == 1 && enemyKillCount >= 15)
+    if (!isSurvivalMode)
     {
-      LoadLevel(2);
-    }
-    else if (currentLevel == 2 && enemyKillCount >= 15)
-    {
-      LoadLevel(3);
+      if (currentLevel == 1 && enemyKillCount >= 15)
+      {
+        LoadLevel(2);
+      }
+      else if (currentLevel == 2 && enemyKillCount >= 15)
+      {
+        LoadLevel(3);
+      }
     }
   }
 
@@ -124,6 +129,11 @@ public class Game : MonoBehaviour {
     if (!ui.IsReady)
     {
       return;
+    }
+    if (survivalTimer != null)
+    {
+      survivalTimer += Time.deltaTime;
+      enemySpawnDelay = Mathf.Max(0.5f, enemySpawnDelay - Time.deltaTime * 0.01f);
     }
 
     // Stop spawning enemies on level 3 and check spawn timer

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UI : MonoBehaviour {
   public GameObject uiTitle;
@@ -8,6 +9,9 @@ public class UI : MonoBehaviour {
   public GameObject uiLevel2Screen;
   public GameObject uiLevel3Screen;
   public GameObject uiWinScreen;
+  public GameObject bossHealthBar;
+  public TextMeshProUGUI survivalTimerText;
+  public GameObject timerBackground;
 
   public bool IsReady { get; private set; }
 
@@ -18,8 +22,30 @@ public class UI : MonoBehaviour {
     uiLevel2Screen.SetActive(false);
     uiLevel3Screen.SetActive(false);
     uiWinScreen.SetActive(false);
+    bossHealthBar.SetActive(false);
+    survivalTimerText.gameObject.SetActive(false);
+    timerBackground.SetActive(false);
     SpaceShooterInput.Instance.DisableInput();
     IsReady = false;
+  }
+
+  void Update()
+  {
+    if (survivalTimerText != null)
+    {
+      survivalTimerText.text = "Time: " + Mathf.FloorToInt(Game.Instance.survivalTimer) + "s";
+    }
+  }
+
+  // Starts survival mode
+  public void StartSurvivalMode()
+  {
+    uiTitle.SetActive(false);
+    Game.Instance.isSurvivalMode = true;
+    survivalTimerText.gameObject.SetActive(true);
+    timerBackground.SetActive(true);
+    SpaceShooterInput.Instance.EnableInput();
+    IsReady = true;
   }
 
   // Display level screen
@@ -37,6 +63,8 @@ public class UI : MonoBehaviour {
     {
       uiLevel3Screen.SetActive(true);
     }
+    survivalTimerText.gameObject.SetActive(false);
+    timerBackground.SetActive(false);
     SpaceShooterInput.Instance.DisableInput();
     IsReady = false;
   }
@@ -44,6 +72,9 @@ public class UI : MonoBehaviour {
   public void ShowWinScreen()
   {
     uiWinScreen.SetActive(true);
+    bossHealthBar.SetActive(false);
+    survivalTimerText.gameObject.SetActive(false);
+    timerBackground.SetActive(false);
     SpaceShooterInput.Instance.DisableInput();
     IsReady = false;
   }
@@ -54,6 +85,8 @@ public class UI : MonoBehaviour {
     uiLevel1Screen.SetActive(false);
     uiLevel2Screen.SetActive(false);
     uiLevel3Screen.SetActive(false);
+    survivalTimerText.gameObject.SetActive(true);
+    timerBackground.SetActive(true);
     SpaceShooterInput.Instance.EnableInput();
     Game.Instance.CheckSpawnBoss();
     IsReady = true;
@@ -61,6 +94,9 @@ public class UI : MonoBehaviour {
   
   public void ShowGameOver() {
     uiGameover.SetActive(true);
+    bossHealthBar.SetActive(false);
+    survivalTimerText.gameObject.SetActive(false);
+    timerBackground.SetActive(false);
     SpaceShooterInput.Instance.DisableInput();
     IsReady = false;
   }
