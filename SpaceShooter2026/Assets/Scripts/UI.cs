@@ -4,16 +4,51 @@ using UnityEngine.SceneManagement;
 public class UI : MonoBehaviour {
   public GameObject uiTitle;
   public GameObject uiGameover;
+  public GameObject uiLevel1Screen;
+  public GameObject uiLevel2Screen;
+  public GameObject uiLevel3Screen;
 
   public bool IsReady { get; private set; }
 
   private void Start() {
     uiGameover.SetActive(false);
     uiTitle.SetActive(true);
+    uiLevel1Screen.SetActive(false);
+    uiLevel2Screen.SetActive(false);
+    uiLevel3Screen.SetActive(false);
     SpaceShooterInput.Instance.DisableInput();
     IsReady = false;
   }
 
+  // Display level screen
+  public void ShowLevelScreen(int level)
+  {
+    if (level == 1)
+    {
+      uiLevel1Screen.SetActive(true);
+    }
+    else if (level == 2)
+    {
+      uiLevel2Screen.SetActive(true);
+    }
+    else if (level == 3)
+    {
+      uiLevel3Screen.SetActive(true);
+    }
+    SpaceShooterInput.Instance.DisableInput();
+    IsReady = false;
+  }
+
+  // User presses button to start level
+  public void StartLevel()
+  {
+    uiLevel1Screen.SetActive(false);
+    uiLevel2Screen.SetActive(false);
+    uiLevel3Screen.SetActive(false);
+    SpaceShooterInput.Instance.EnableInput();
+    IsReady = true;
+  }
+  
   public void ShowGameOver() {
     uiGameover.SetActive(true);
     SpaceShooterInput.Instance.DisableInput();
@@ -25,8 +60,7 @@ public class UI : MonoBehaviour {
   }
 
   public void StartGame() {
-    SpaceShooterInput.Instance.EnableInput();
-    IsReady = true;
     uiTitle.SetActive(false);
+    ShowLevelScreen(1);
   }
 }

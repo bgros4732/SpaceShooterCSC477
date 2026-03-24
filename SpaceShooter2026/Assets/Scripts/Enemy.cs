@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour {
       Destroy(gameObject);
       Destroy(c.gameObject);
       Score.Instance.HitEnemy();
+      Game.Instance.EnemyKilled();
     }
     else if (c.gameObject.CompareTag("Player")) {
       Destroy(gameObject);

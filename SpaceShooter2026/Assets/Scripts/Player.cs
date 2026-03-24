@@ -84,6 +84,11 @@ public class Player : MonoBehaviour
     shield.FullRefill();
   }
 
+  public void ResetHealth()
+  {
+    health = 1.0f;
+  }
+
   private void OnCollisionEnter2D(Collision2D c)
   {
     Debug.Log("Player hit by: " + c.gameObject.tag);
