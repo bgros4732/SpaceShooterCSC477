@@ -23,7 +23,11 @@ public class Game : MonoBehaviour {
         Random.Range(spawnRange.bounds.min.x, spawnRange.bounds.max.x),
         Random.Range(spawnRange.bounds.min.y, spawnRange.bounds.max.y),
         0);
-    Instantiate(enemyPrefab, enemySpawnPt, Quaternion.identity);
+    // Spawns different types of enemies randomly
+    Instantiate(enemyPrefab, enemySpawnPt, Quaternion.identity).GetComponent<Enemy>().enemyType = Random.value > 0.5f
+      ? Enemy.EnemyType.Shooter
+      : Enemy.EnemyType.Shooter;
+    
   }
   private void SpawnPowerup() {
     Vector3 powerupSpawnPt = new Vector3(

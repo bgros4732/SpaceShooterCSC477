@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2645155208977401365}
   - component: {fileID: 6263949130825588109}
-  - component: {fileID: -5359554579774650103}
   - component: {fileID: 2270690823820581741}
-  m_Layer: 6
-  m_Name: Projectile
-  m_TagString: Bullet
+  - component: {fileID: -5500601727466814676}
+  m_Layer: 7
+  m_Name: EnemyProjectile
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0020685196, y: -0.000000014901161}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -81,19 +81,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7310926, y: 0.16431859}
   m_EdgeRadius: 0
---- !u!114 &-5359554579774650103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7997487652698694584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d168c5965af214ac2afc6029897b6e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  speed: 9
 --- !u!50 &2270690823820581741
 Rigidbody2D:
   serializedVersion: 5
@@ -104,7 +91,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 7997487652698694584}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
@@ -121,6 +108,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-5500601727466814676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997487652698694584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72179ab64058ae45b47012a6a4fefe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBullet
+  speed: 15
 --- !u!1 &9121743377604145004
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +203,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0, g: 0, b: 0.9960785, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.03499937, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

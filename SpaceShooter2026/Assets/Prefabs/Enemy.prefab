@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2481411660934603684}
   - component: {fileID: 4060100635781462192}
   - component: {fileID: -1162253528925871094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -32,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8729000618336134734}
   - {fileID: 139651308463423097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -101,6 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   speed: 5
   expoPrefab: {fileID: 5386597588948128404, guid: 8a7efade44ac549dda33630687e1524f, type: 3}
+  enemyType: 0
+  verticalDirection: 1
+  enemyBulletPrefab: {fileID: 7997487652698694584, guid: 542672a6f7b24c447b857d342e49780d, type: 3}
+  fireRate: 2
+  bulletSpawnPoint: {fileID: 8729000618336134734}
 --- !u!50 &-1162253528925871094
 Rigidbody2D:
   serializedVersion: 5
@@ -219,3 +225,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &7658570479891244315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8729000618336134734}
+  m_Layer: 8
+  m_Name: bulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8729000618336134734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658570479891244315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5972521589880031324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
