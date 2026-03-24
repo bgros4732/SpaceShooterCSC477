@@ -8,6 +8,8 @@ public class Game : MonoBehaviour {
   public BoxCollider2D spawnRange;
   public UI ui;
   public GameObject playerObject;
+  public GameObject bossPrefab;
+  public Vector3 bossSpawnPosition = new Vector3(6f, 0f, 0f);
 
   // private fields
   private float powerUpDelay;
@@ -21,6 +23,16 @@ public class Game : MonoBehaviour {
   private void Awake()
   {
     Instance = this;
+  }
+
+  public void BossDefeated()
+  {
+    ui.ShowWinScreen();
+  }
+
+  private void SpawnBoss()
+  {
+    Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
   }
 
   private void Start() {
@@ -91,6 +103,11 @@ public class Game : MonoBehaviour {
       Destroy(enemy);
     }
     ui.ShowLevelScreen(level);
+
+    if (level == 3)
+    {
+      SpawnBoss();
+    }
   }
 
   private void SpawnPowerup() {

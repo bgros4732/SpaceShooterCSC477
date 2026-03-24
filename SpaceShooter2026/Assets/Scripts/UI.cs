@@ -7,6 +7,7 @@ public class UI : MonoBehaviour {
   public GameObject uiLevel1Screen;
   public GameObject uiLevel2Screen;
   public GameObject uiLevel3Screen;
+  public GameObject uiWinScreen;
 
   public bool IsReady { get; private set; }
 
@@ -16,6 +17,7 @@ public class UI : MonoBehaviour {
     uiLevel1Screen.SetActive(false);
     uiLevel2Screen.SetActive(false);
     uiLevel3Screen.SetActive(false);
+    uiWinScreen.SetActive(false);
     SpaceShooterInput.Instance.DisableInput();
     IsReady = false;
   }
@@ -35,6 +37,13 @@ public class UI : MonoBehaviour {
     {
       uiLevel3Screen.SetActive(true);
     }
+    SpaceShooterInput.Instance.DisableInput();
+    IsReady = false;
+  }
+
+  public void ShowWinScreen()
+  {
+    uiWinScreen.SetActive(true);
     SpaceShooterInput.Instance.DisableInput();
     IsReady = false;
   }
