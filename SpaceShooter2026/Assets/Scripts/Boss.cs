@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
-  public float health = 10f;
+  public float health = 25f;
   public float attackInterval = 7f;
   public GameObject enemyBulletPrefab;
   public GameObject enemyPrefab;
@@ -12,11 +13,15 @@ public class Boss : MonoBehaviour
 
   private float attackTimer;
   private Transform player;
+  private Slider bossHealthBar;
 
   void Start()
   {
     attackTimer = attackInterval;
     player = GameObject.FindWithTag("Player").transform;
+    bossHealthBar = GetComponentInChildren<Slider>();
+    bossHealthBar.maxValue = health;
+    bossHealthBar.value = health;
   }
 
   void Update()
@@ -40,11 +45,17 @@ public class Boss : MonoBehaviour
   // Shoots 3 enemy projectiles at player's position
   private void AttackShoot()
   {
-    Vector3 direction = (player.position - bulletSpawnPoint.position).normalized;
+    StartCoroutine(ShootCoroutine());
+  }
+
+  private IEnumerator ShootCoroutine()
+  {
+    float[] yOffsets = { 1.7f, 0f, -1.7f };
     for (int i = 0; i < 3; i++)
     {
-      GameObject bullet = Instantiate(enemyBulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-      bullet.GetComponent<Rigidbody2D>().linearVelocity = direction * 10f;
+      Vector3 spawnPos = new Vector3(bulletSpawnPoint.position.x, bulletSpawnPoint.position.y + yOffsets[i], 0);
+      Instantiate(enemyBulletPrefab, spawnPos, Quaternion.identity);
+      yield return new WaitForSeconds(0.5f);
     }
   }
 
@@ -71,6 +82,7 @@ public class Boss : MonoBehaviour
     {
       Destroy(c.gameObject);
       health--;
+      bossHealthBar.value = health;
       if (health <= 0)
       {
         var expoObj = Instantiate(expoPrefab, transform.position, Quaternion.identity);

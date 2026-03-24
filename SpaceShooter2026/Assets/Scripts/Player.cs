@@ -91,7 +91,6 @@ public class Player : MonoBehaviour
 
   private void OnCollisionEnter2D(Collision2D c)
   {
-    Debug.Log("Player hit by: " + c.gameObject.tag);
     if (c.gameObject.CompareTag("EnemyBullet"))
     {
       DamageFromEnemy();
